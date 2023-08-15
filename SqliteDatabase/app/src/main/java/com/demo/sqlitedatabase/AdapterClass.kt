@@ -1,10 +1,15 @@
 package com.demo.sqlitedatabase
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
@@ -46,17 +51,41 @@ class AdapterClass(var context: Context) : RecyclerView.Adapter<AdapterClass.MyV
             context.startActivity(i)
         }
         holder.delete.setOnClickListener {
-            db.deleteData(list[position].id)
-
             deleteFun(list[position].id)
-            Toast.makeText(context, "Data Delete Success", Toast.LENGTH_SHORT).show()
+//            db.deleteData(list[position].id)
+//            Toast.makeText(context, "Data Delete Success", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun deleteFun(id: Int) {
-        list.removeAt(id)
-        notifyItemRemoved(id)
-        notifyDataSetChanged()
+
+
+        val dialog = Dialog(context)
+        dialog.setContentView(R.layout.dialog_delete)
+
+        var btnSet = dialog.findViewById<Button>(R.id.btnSet)
+        var btnCancel = dialog.findViewById<Button>(R.id.btnCancel)
+        btnSet.setOnClickListener {
+
+            db.deleteData(id)
+            list.removeAt(id)
+            notifyItemRemoved(id)
+            notifyDataSetChanged()
+            Toast.makeText(context, "delete record success", Toast.LENGTH_SHORT).show()
+
+            dialog.dismiss()
+        }
+        btnCancel.setOnClickListener {
+
+            Toast.makeText(context, "cancel", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))   //dialog box TRANSPARENT
+        dialog.window?.setLayout(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        dialog.show()
     }
 
     fun updateList(list: ArrayList<ModelClass>) {
