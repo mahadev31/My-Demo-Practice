@@ -52,4 +52,17 @@ class SQLiteDatabase(var context: Context) : SQLiteOpenHelper(context, "database
 
         return list
     }
+
+    fun updateData(id: Int, name: String, number: String) {
+
+        var db = writableDatabase
+        var update = "update databaseTb set name='$name',number='$number' where id='$id'"
+        db.execSQL(update)
+    }
+
+    fun deleteData(id: Int) {
+        var db = writableDatabase
+        var delete = "delete from databaseTb where id='$id'"
+        db.execSQL(delete)
+    }
 }
