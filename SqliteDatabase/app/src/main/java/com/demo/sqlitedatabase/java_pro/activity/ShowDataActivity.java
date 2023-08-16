@@ -1,10 +1,11 @@
-package com.demo.sqlitedatabase.java_pro;
+package com.demo.sqlitedatabase.java_pro.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
 import com.demo.sqlitedatabase.databinding.ActivityShowDataBinding;
+import com.demo.sqlitedatabase.java_pro.Database;
 
 public class ShowDataActivity extends AppCompatActivity {
 

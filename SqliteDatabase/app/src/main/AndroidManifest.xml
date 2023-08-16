@@ -12,16 +12,26 @@
         android:theme="@style/Theme.SqliteDatabase"
         tools:targetApi="31">
         <activity
-            android:name=".ShowAllDataActivity"
+            android:name=".Java_and_KotlinActivity"
+            android:exported="true" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".java_pro.activity.ShowAllDataActivity"
             android:exported="false" />
         <activity
-            android:name=".ShowDataActivity"
+            android:name=".java_pro.activity.ShowDataActivity"
             android:exported="false" />
         <activity
-            android:name=".InsertDataActivity"
+            android:name=".java_pro.activity.InsertDataActivity"
             android:exported="false" />
         <activity
-            android:name=".DashbordActivity"
+            android:name=".java_pro.activity.DashboardActivity"
             android:exported="false" />
         <activity
             android:name=".kotlin_pro.activity.AllDataActivity"
@@ -35,11 +45,6 @@
         <activity
             android:name=".kotlin_pro.activity.MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

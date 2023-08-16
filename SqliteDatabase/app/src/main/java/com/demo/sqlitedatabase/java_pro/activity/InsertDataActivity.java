@@ -1,4 +1,4 @@
-package com.demo.sqlitedatabase.java_pro;
+package com.demo.sqlitedatabase.java_pro.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
