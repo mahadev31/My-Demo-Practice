@@ -51,13 +51,13 @@ class AdapterClass(var context: Context) : RecyclerView.Adapter<AdapterClass.MyV
             context.startActivity(i)
         }
         holder.delete.setOnClickListener {
-            deleteFun(list[position].id)
-//            db.deleteData(list[position].id)
-//            Toast.makeText(context, "Data Delete Success", Toast.LENGTH_SHORT).show()
+
+            deleteFun(position, list[position].id)
+
         }
     }
 
-    private fun deleteFun(id: Int) {
+    private fun deleteFun(position: Int, id: Int) {
 
 
         val dialog = Dialog(context)
@@ -68,9 +68,11 @@ class AdapterClass(var context: Context) : RecyclerView.Adapter<AdapterClass.MyV
         btnSet.setOnClickListener {
 
             db.deleteData(id)
-            list.removeAt(id)
-            notifyItemRemoved(id)
-            notifyDataSetChanged()
+
+            list.removeAt(position)
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, list.size)
+
             Toast.makeText(context, "delete record success", Toast.LENGTH_SHORT).show()
 
             dialog.dismiss()
