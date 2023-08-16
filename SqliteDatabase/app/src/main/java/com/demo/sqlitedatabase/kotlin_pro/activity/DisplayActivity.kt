@@ -1,9 +1,10 @@
-package com.demo.sqlitedatabase
+package com.demo.sqlitedatabase.kotlin_pro.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.demo.sqlitedatabase.databinding.ActivityDisplayBinding
+import com.demo.sqlitedatabase.kotlin_pro.SQLiteDatabase
 
 class DisplayActivity : AppCompatActivity() {
     lateinit var displayBinding: ActivityDisplayBinding

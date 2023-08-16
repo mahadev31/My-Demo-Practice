@@ -1,4 +1,4 @@
-package com.demo.sqlitedatabase
+package com.demo.sqlitedatabase.kotlin_pro.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.demo.sqlitedatabase.databinding.ActivityAddDataBinding
+import com.demo.sqlitedatabase.kotlin_pro.SQLiteDatabase
 
 class AddDataActivity : AppCompatActivity() {
     lateinit var addDataBinding: ActivityAddDataBinding

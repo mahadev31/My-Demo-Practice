@@ -12,16 +12,16 @@
         android:theme="@style/Theme.SqliteDatabase"
         tools:targetApi="31">
         <activity
-            android:name=".AllDataActivity"
+            android:name=".kotlin_pro.activity.AllDataActivity"
             android:exported="false" />
         <activity
-            android:name=".DisplayActivity"
+            android:name=".kotlin_pro.activity.DisplayActivity"
             android:exported="false" />
         <activity
-            android:name=".AddDataActivity"
+            android:name=".kotlin_pro.activity.AddDataActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".kotlin_pro.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

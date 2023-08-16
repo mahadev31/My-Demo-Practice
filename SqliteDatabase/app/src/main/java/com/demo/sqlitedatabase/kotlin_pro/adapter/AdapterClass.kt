@@ -1,4 +1,4 @@
-package com.demo.sqlitedatabase
+package com.demo.sqlitedatabase.kotlin_pro.adapter
 
 import android.app.Dialog
 import android.content.Context
@@ -14,6 +14,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
+import com.demo.sqlitedatabase.kotlin_pro.model.ModelClass
+import com.demo.sqlitedatabase.R
+import com.demo.sqlitedatabase.kotlin_pro.activity.AddDataActivity
+import com.demo.sqlitedatabase.kotlin_pro.SQLiteDatabase
 import java.util.ArrayList
 
 class AdapterClass(var context: Context) : RecyclerView.Adapter<AdapterClass.MyViewHolder>() {

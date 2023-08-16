@@ -1,4 +1,4 @@
-package com.demo.sqlitedatabase
+package com.demo.sqlitedatabase.kotlin_pro.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

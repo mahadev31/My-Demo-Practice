@@ -1,9 +1,12 @@
-package com.demo.sqlitedatabase
+package com.demo.sqlitedatabase.kotlin_pro.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.demo.sqlitedatabase.kotlin_pro.adapter.AdapterClass
+import com.demo.sqlitedatabase.kotlin_pro.model.ModelClass
 import com.demo.sqlitedatabase.databinding.ActivityAllDataBinding
+import com.demo.sqlitedatabase.kotlin_pro.SQLiteDatabase
 
 class AllDataActivity : AppCompatActivity() {
     lateinit var allDataBinding: ActivityAllDataBinding
