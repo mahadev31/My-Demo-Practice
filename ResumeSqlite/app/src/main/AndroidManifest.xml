@@ -12,6 +12,9 @@
         android:theme="@style/Theme.ResumeSqlite"
         tools:targetApi="31">
         <activity
+            android:name=".DisplayDataActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginPageActivity"
             android:exported="false" />
         <activity
