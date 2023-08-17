@@ -27,31 +27,31 @@ class AddDataActivity : AppCompatActivity() {
         if (intent != null && intent.hasExtra("updateRecord")) {
             flag = 1
              id = intent.getIntExtra("id", 0)
-            var name = intent.getStringExtra("name")
-            var number = intent.getStringExtra("number")
+            var itemName = intent.getStringExtra("itemName")
+            var price = intent.getStringExtra("price")
 
-            addDataBinding.edtName.setText(name)
-            addDataBinding.edtNumber.setText(number)
+            addDataBinding.edtItemName.setText(itemName)
+            addDataBinding.edtPrice.setText(price)
             Log.e("TAG", "initView: " + id)
         }
         addDataBinding.btnSave.setOnClickListener {
-            var name = addDataBinding.edtName.text.toString()
-            var number = addDataBinding.edtNumber.text.toString()
+            var itemName = addDataBinding.edtItemName.text.toString()
+            var price = addDataBinding.edtPrice.text.toString()
 
-            if (name.isEmpty()) {
-                Toast.makeText(this, "Name is Empty", Toast.LENGTH_SHORT).show()
-            } else if (number.isEmpty()) {
-                Toast.makeText(this, "Number is Empty", Toast.LENGTH_SHORT).show()
+            if (itemName.isEmpty()) {
+                Toast.makeText(this, "item Name is Empty", Toast.LENGTH_SHORT).show()
+            } else if (price.isEmpty()) {
+                Toast.makeText(this, "price is Empty", Toast.LENGTH_SHORT).show()
             } else {
 
                 if (flag == 1) {
-                    db.updateData(id, name, number)
+                    db.updateData(id, itemName, price)
                     var i = Intent(this, AllDataActivity::class.java)
                     startActivity(i)
                 } else {
                     var i = Intent(this, DisplayActivity::class.java)
-                    i.putExtra("name", name)
-                    i.putExtra("number", number)
+                    i.putExtra("itemName", itemName)
+                    i.putExtra("price", price)
                     startActivity(i)
                 }
             }

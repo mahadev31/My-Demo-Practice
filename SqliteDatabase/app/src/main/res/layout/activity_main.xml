@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_20ssp"
-        android:text="Java"
+        android:text="Kotlin"
         android:textColor="@color/black"
         android:textSize="@dimen/_20ssp"
         android:textStyle="bold" />

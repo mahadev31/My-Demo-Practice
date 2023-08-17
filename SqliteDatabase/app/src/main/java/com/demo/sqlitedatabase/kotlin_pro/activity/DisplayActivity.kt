@@ -3,6 +3,7 @@ package com.demo.sqlitedatabase.kotlin_pro.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.demo.sqlitedatabase.databinding.ActivityDisplayBinding
 import com.demo.sqlitedatabase.kotlin_pro.SQLiteDatabase
 
@@ -24,12 +25,14 @@ class DisplayActivity : AppCompatActivity() {
             startActivity(i)
             finish()
         }
-        var name = intent.getStringExtra("name")
-        var number = intent.getStringExtra("number")
+        var itemName = intent.getStringExtra("itemName")
+        var price = intent.getStringExtra("price")
 
-        displayBinding.txtName.text = name
-        displayBinding.txtNumber.text = number
+        displayBinding.txtItemName.text = itemName
+        displayBinding.txtPrice.text = price
 
-        db.insertData(name, number)
+        db.insertData(itemName, price)
+
+        Toast.makeText(this, "Data Store", Toast.LENGTH_SHORT).show()
     }
 }

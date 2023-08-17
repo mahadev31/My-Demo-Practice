@@ -2,7 +2,9 @@ package com.demo.sqlitedatabase.java_pro.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.demo.sqlitedatabase.databinding.ActivityShowDataBinding;
 import com.demo.sqlitedatabase.java_pro.Database;
@@ -22,14 +24,18 @@ public class ShowDataActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        showBinding.btnBack.setOnClickListener(v->{
+            Intent i=new Intent(this,DashboardActivity.class);
+            startActivity(i);
+        });
+        String itemName = getIntent().getStringExtra("itemName");
+        String price = getIntent().getStringExtra("price");
 
-        String name = getIntent().getStringExtra("name");
-        String number = getIntent().getStringExtra("number");
+        showBinding.txtName.setText(itemName);
+        showBinding.txtNumber.setText(price);
 
-        showBinding.txtName.setText(name);
-        showBinding.txtNumber.setText(number);
+        db.insertData(itemName,price);
 
-        db.insertData(name,number);
-
+        Toast.makeText(this, "Data Store", Toast.LENGTH_SHORT).show();
     }
 }

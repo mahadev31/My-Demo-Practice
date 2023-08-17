@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="@dimen/_10sdp">
 
@@ -13,7 +14,7 @@
         app:cardCornerRadius="@dimen/_10sdp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -37,47 +38,30 @@
                     android:textSize="@dimen/_15ssp"
                     android:textStyle="bold" />
             </LinearLayout>
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_5sdp">
+                android:padding="@dimen/_5sdp">
 
                 <TextView
+                    android:id="@+id/txtItemDisplay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Name:-"
-                    android:textSize="@dimen/_15ssp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/_20ssp"
+                    android:textStyle="bold"
+                    tools:text="Item" />
 
                 <TextView
-                    android:id="@+id/txtNameDisplay"
+                    android:id="@+id/txtPriceDisplay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:textSize="@dimen/_15ssp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    android:textSize="@dimen/_20ssp"
+                    android:textStyle="bold"
+                    tools:text="price" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_5sdp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Number:-"
-                    android:textSize="@dimen/_15ssp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtNumberDisplay"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:textSize="@dimen/_15ssp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

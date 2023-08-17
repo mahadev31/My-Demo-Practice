@@ -11,7 +11,7 @@ import com.demo.sqlitedatabase.kotlin_pro.model.ModelClass
 class SQLiteDatabase(var context: Context) : SQLiteOpenHelper(context, "database", null, 1) {
     override fun onCreate(db: SQLiteDatabase?) {
         var table =
-            "create table databaseTb(id integer primary key autoincrement,name text, number text)"
+            "create table databaseTb(id integer primary key autoincrement,itemName text, price text)"
         db?.execSQL(table)
     }
 
@@ -19,15 +19,15 @@ class SQLiteDatabase(var context: Context) : SQLiteOpenHelper(context, "database
         TODO("Not yet implemented")
     }
 
-    fun insertData(name: String?, number: String?) {
+    fun insertData(itemName: String?, price: String?) {
 
         var db = writableDatabase
         var c = ContentValues()
-        c.put("name", name)
-        c.put("number", number)
+        c.put("itemName", itemName)
+        c.put("price", price)
         db.insert("databaseTb", null, c)
 
-        Log.e("TAG", "insertData: $name  $number")
+        Log.e("TAG", "insertData: $itemName  $price")
     }
 
     fun displayData(): ArrayList<ModelClass> {
@@ -41,10 +41,10 @@ class SQLiteDatabase(var context: Context) : SQLiteOpenHelper(context, "database
             cursor.moveToFirst()
             do {
                 var id = cursor.getInt(0)
-                var name = cursor.getString(1)
-                var number = cursor.getString(2)
+                var itemName = cursor.getString(1)
+                var price = cursor.getString(2)
 
-                var model = ModelClass(id, name, number)
+                var model = ModelClass(id, itemName, price)
                 list.add(model)
             } while (cursor.moveToNext())
         } else {
@@ -54,10 +54,10 @@ class SQLiteDatabase(var context: Context) : SQLiteOpenHelper(context, "database
         return list
     }
 
-    fun updateData(id: Int, name: String, number: String) {
+    fun updateData(id: Int, itemName: String, price: String) {
 
         var db = writableDatabase
-        var update = "update databaseTb set name='$name',number='$number' where id='$id'"
+        var update = "update databaseTb set itemName='$itemName',price='$price' where id='$id'"
         db.execSQL(update)
     }
 

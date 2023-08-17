@@ -16,16 +16,16 @@ tools:context=".java_pro.activity.InsertDataActivity">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name:-"
+        android:text="Item Name:-"
         android:textSize="@dimen/_15ssp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/edtName"
+        android:id="@+id/edtItemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_10sdp"
-        android:hint="Enter Name"
+        android:hint="Enter Item Name"
         android:imeOptions="actionNext"
         android:inputType="text"
         android:textSize="@dimen/_15ssp"
@@ -40,16 +40,16 @@ tools:context=".java_pro.activity.InsertDataActivity">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Number:-"
+        android:text="Price:-"
         android:textSize="@dimen/_15ssp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/edtNumber"
+        android:id="@+id/edtPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_10sdp"
-        android:hint="Enter Number"
+        android:hint="Enter Price"
         android:imeOptions="actionDone"
         android:inputType="number"
         android:textSize="@dimen/_15ssp"

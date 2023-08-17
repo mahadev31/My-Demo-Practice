@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,14 +21,14 @@ import com.demo.sqlitedatabase.kotlin_pro.activity.AddDataActivity
 import com.demo.sqlitedatabase.kotlin_pro.SQLiteDatabase
 import java.util.ArrayList
 
-class AdapterClass(var context: Context) : RecyclerView.Adapter<AdapterClass.MyViewHolder>() {
+class AdapterClass(var context: Context, var totalAll: () -> Unit) : RecyclerView.Adapter<AdapterClass.MyViewHolder>() {
     var list = ArrayList<ModelClass>()
     var db = SQLiteDatabase(context)
-
+    var total = 0
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var id: TextView = itemView.findViewById(R.id.txtIdDisplay)
-        var name: TextView = itemView.findViewById(R.id.txtNameDisplay)
-        var number: TextView = itemView.findViewById(R.id.txtNumberDisplay)
+        var itemName: TextView = itemView.findViewById(R.id.txtItemDisplay)
+        var price: TextView = itemView.findViewById(R.id.txtPriceDisplay)
         var edit: AppCompatButton = itemView.findViewById(R.id.btnEdit)
         var delete: AppCompatButton = itemView.findViewById(R.id.btnDelete)
     }
@@ -43,14 +44,22 @@ class AdapterClass(var context: Context) : RecyclerView.Adapter<AdapterClass.MyV
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.id.text = list[position].id.toString()
-        holder.name.text = list[position].name
-        holder.number.text = list[position].number
+        holder.itemName.text = list[position].itemName
+        holder.price.text = list[position].price
+
+        val totalAmount = holder.price.text.toString()
+        total = total + totalAmount.toInt()
+        Log.e("TAG", "total: $total")
+
+        if (position == list.size - 1) {
+            totalAll.invoke()
+        }
 
         holder.edit.setOnClickListener {
             var i = Intent(context, AddDataActivity::class.java)
             i.putExtra("id", list[position].id)
-            i.putExtra("name", list[position].name)
-            i.putExtra("number", list[position].number)
+            i.putExtra("itemName", list[position].itemName)
+            i.putExtra("price", list[position].price)
             i.putExtra("updateRecord", true)
             context.startActivity(i)
         }
@@ -97,5 +106,12 @@ class AdapterClass(var context: Context) : RecyclerView.Adapter<AdapterClass.MyV
     fun updateList(list: ArrayList<ModelClass>) {
         this.list = list
         notifyDataSetChanged()
+    }
+
+    fun totalFunction(): Int {
+
+        Log.e("function", "total: " + total)
+        return total
+
     }
 }

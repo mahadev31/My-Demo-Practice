@@ -19,11 +19,11 @@ class Java_and_KotlinActivity : AppCompatActivity() {
 
     private fun initView() {
         binding.btnJava.setOnClickListener {
-            var i = Intent(this, MainActivity::class.java)
+            var i = Intent(this, DashboardActivity::class.java)
             startActivity(i)
         }
         binding.btnKotlin.setOnClickListener {
-            var i = Intent(this, DashboardActivity::class.java)
+            var i = Intent(this, MainActivity::class.java)
             startActivity(i)
         }
     }

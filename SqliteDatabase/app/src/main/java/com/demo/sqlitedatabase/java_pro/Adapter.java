@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,26 +23,31 @@ import com.demo.sqlitedatabase.java_pro.activity.InsertDataActivity;
 
 import java.util.ArrayList;
 
+
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     ArrayList<Model> list = new ArrayList<>();
     Context context;
+    int total = 0;
 
-    Database db=new Database(context);
-    public Adapter(Context context) {
+    TotalAll_Interface totalAll;
+    Database db = new Database(context);
+
+    public Adapter(Context context, TotalAll_Interface totalAll) {
         this.context = context;
+        this.totalAll = totalAll;
     }
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView id, name, number;
+        TextView id, itemName, price;
         AppCompatButton edit, delete;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             id = itemView.findViewById(R.id.txtIdDisplay);
-            name = itemView.findViewById(R.id.txtNameDisplay);
-            number = itemView.findViewById(R.id.txtNumberDisplay);
+            itemName = itemView.findViewById(R.id.txtItemDisplay);
+            price = itemView.findViewById(R.id.txtPriceDisplay);
             edit = itemView.findViewById(R.id.btnEdit);
             delete = itemView.findViewById(R.id.btnDelete);
         }
@@ -58,15 +64,24 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        holder.id.setText(list.get(position).getId());
-        holder.name.setText(list.get(position).getName());
-        holder.number.setText(list.get(position).getNumber());
+        holder.id.setText(String.valueOf(list.get(position).getId()));
+        holder.itemName.setText(list.get(position).getItemName());
+        holder.price.setText(list.get(position).getPrice());
+
+        int totalAmount = Integer.parseInt(String.valueOf(holder.price.getText()));
+        total = total + totalAmount;
+        Log.e("TAG", "total: $total");
+
+        if (position == list.size() - 1) {
+             totalAll.totalAll();
+        }
+
 
         holder.edit.setOnClickListener(v -> {
             Intent i = new Intent(context, InsertDataActivity.class);
             i.putExtra("id", list.get(position).getId());
-            i.putExtra("name", list.get(position).getName());
-            i.putExtra("number", list.get(position).getNumber());
+            i.putExtra("itemName", list.get(position).getItemName());
+            i.putExtra("price", list.get(position).getPrice());
             i.putExtra("updateRecord", true);
             context.startActivity(i);
         });
@@ -76,24 +91,24 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     }
 
     private void deleteFun(int position, int id) {
-        Dialog dialog =new Dialog(context);
+        Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.dialog_delete);
 
         Button btnSet = dialog.findViewById(R.id.btnSet);
         Button btnCancel = dialog.findViewById(R.id.btnCancel);
-                btnSet.setOnClickListener(v->{
-                                db.deleteData(id);
+        btnSet.setOnClickListener(v -> {
+            db.deleteData(id);
 
-                        list.remove(position);
-                        notifyItemRemoved(position);
-                        notifyItemRangeChanged(position, list.size());
+            list.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, list.size());
 
-                        Toast.makeText(context, "delete record success", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "delete record success", Toast.LENGTH_SHORT).show();
 
-                        dialog.dismiss();
-    });
+            dialog.dismiss();
+        });
 
-        btnCancel.setOnClickListener(v-> {
+        btnCancel.setOnClickListener(v -> {
 
             Toast.makeText(context, "cancel", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
@@ -116,5 +131,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         notifyDataSetChanged();
     }
 
+    public int totalFunction() {
 
+        Log.e("function", "total: " + total);
+        return total;
+
+    }
 }
+
+

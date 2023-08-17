@@ -2,12 +2,12 @@ package com.demo.sqlitedatabase.java_pro;
 
 public class Model {
     int id;
-    String name, number;
+    String itemName, price;
 
-    Model(int id, String name, String number) {
+    Model(int id, String itemName, String price) {
         this.id = id;
-        this.name = name;
-        this.number = number;
+        this.itemName = itemName;
+        this.price = price;
     }
 
     public int getId() {
@@ -18,19 +18,19 @@ public class Model {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setItemName(String name) {
+        this.itemName = itemName;
     }
 
-    public String getNumber() {
-        return number;
+    public String getPrice() {
+        return price;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setPrice(String price) {
+        this.price = price;
     }
 }

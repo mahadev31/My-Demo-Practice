@@ -21,7 +21,7 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String table = "Create table databaseTb(id integer primary key autoincrement,name text,number text)";
+        String table = "Create table databaseTb(id integer primary key autoincrement,itemName text,price text)";
         db.execSQL(table);
     }
 
@@ -30,16 +30,16 @@ public class Database extends SQLiteOpenHelper {
 
     }
 
-    public void insertData(String name, String number) {
+    public void insertData(String itemName, String price) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues c = new ContentValues();
 
-        c.put("name", name);
-        c.put("number", number);
+        c.put("itemName", itemName);
+        c.put("price", price);
 
         db.insert("databaseTb", null, c);
 
-        Log.e("TAG", "insertData: " + name + " " + number);
+        Log.e("TAG", "insertData: " + itemName + " " + price);
     }
 
     public ArrayList<Model> displayData() {
@@ -54,12 +54,12 @@ public class Database extends SQLiteOpenHelper {
             cursor.moveToFirst();
             do {
                 int id = cursor.getInt(0);
-                String name = cursor.getString(1);
-                String number = cursor.getString(2);
+                String itemName = cursor.getString(1);
+                String price = cursor.getString(2);
 
-                Model model = new Model(id, name, number);
+                Model model = new Model(id, itemName, price);
                 list.add(model);
-                Log.e("TAG", "displayData: " + id + " " + name + " " + number);
+                Log.e("TAG", "displayData: " + id + " " + itemName + " " + price);
             } while (cursor.moveToNext());
 
         } else {
@@ -69,6 +69,12 @@ public class Database extends SQLiteOpenHelper {
         return list;
     }
 
+
+    public void updateData(int id, String itemName, String price) {
+        SQLiteDatabase db = getWritableDatabase();
+        String update = "update databaseTb set itemName=" + itemName + ",price = " + price + "where id=" + id;
+        db.execSQL(update);
+    }
 
     public void deleteData(int id) {
         SQLiteDatabase db = getWritableDatabase();
