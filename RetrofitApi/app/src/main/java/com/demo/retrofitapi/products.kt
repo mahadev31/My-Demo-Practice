@@ -20,7 +20,7 @@ data class Products(
 data class ProductsItem(
 
 	@field:SerializedName("discountPercentage")
-	val discountPercentage: Any? = null,
+	val discountPercentage: String? = null,
 
 	@field:SerializedName("thumbnail")
 	val thumbnail: String? = null,
@@ -32,7 +32,7 @@ data class ProductsItem(
 	val price: Int? = null,
 
 	@field:SerializedName("rating")
-	val rating: Any? = null,
+	val rating: String? = null,
 
 	@field:SerializedName("description")
 	val description: String? = null,
