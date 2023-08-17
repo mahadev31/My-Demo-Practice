@@ -53,14 +53,6 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
 
     //retrofit Api
-//    implementation ('com.squareup.retrofit2:retrofit:2.1.0') {
-//        // exclude Retrofit’s OkHttp dependency module and define your own module import
-//        exclude module: 'okhttp'
-//    }
-//    implementation 'com.google.code.gson:gson:2.8.9'
-//    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-//    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
-//    implementation 'com.squareup.okhttp3:okhttps:4.9.0'
 
     implementation ('com.squareup.retrofit2:retrofit:2.1.0') {
         // exclude Retrofit’s OkHttp dependency module and define your own module import
