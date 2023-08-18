@@ -12,22 +12,13 @@
         android:theme="@style/Theme.ResumeSqlite"
         tools:targetApi="31">
         <activity
-            android:name=".DisplayDataActivity"
+            android:name=".activity.UpdateActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginPageActivity"
+            android:name=".activity.DisplayDataActivity"
             android:exported="false" />
         <activity
-            android:name=".ThirdPageActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SecondPageActivity"
-            android:exported="false" />
-        <activity
-            android:name=".FirstPageActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".activity.LoginPageActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,6 +26,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.ThirdPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.SecondPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.FirstPageActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".activity.MainActivity"
+            android:exported="true"></activity>
     </application>
 
 </manifest>

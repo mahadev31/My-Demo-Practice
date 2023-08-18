@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DisplayDataActivity">
+    tools:context=".activity.DisplayDataActivity">
 
 
     <!--    First Name and Last Name-->
@@ -115,7 +115,7 @@
                 android:text="/" />
 
             <TextView
-                android:id="@+id/tatYY"
+                android:id="@+id/txtYY"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_5sdp"

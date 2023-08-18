@@ -1,11 +1,12 @@
-package com.demo.resumesqlite
+package com.demo.resumesqlite.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.demo.resumesqlite.R
 
-class ThirdPageActivity : AppCompatActivity() {
+class UpdateActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_third_page)
+        setContentView(R.layout.activity_update)
     }
 }
