@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity() {
                 Log.e("FILE", imageList[i].imagePath[j].toString())
             }
         }
-      var  obj_adapter = Adapter_PhotosFolder(applicationContext, imageList)
+      var  obj_adapter = Adapter_PhotosFolder(this, imageList)
         mainBinding.gvFolder.setAdapter(obj_adapter)
         return imageList
     }
