@@ -1,4 +1,4 @@
-package com.demo.allimagefromgallery;
+package com.demo.allimagefromgallery.simple_image;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.demo.allimagefromgallery.R;
 
 
 /**
