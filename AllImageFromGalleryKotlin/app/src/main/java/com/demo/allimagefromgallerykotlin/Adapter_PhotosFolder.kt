@@ -12,19 +12,19 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 
-class Adapter_PhotosFolder(context: Context, al_menu: ArrayList<ModelClass>) :
-    ArrayAdapter<ModelClass?>(
+class Adapter_PhotosFolder(context: Context,var al_menu: ArrayList<ModelClass>) :
+    ArrayAdapter<ModelClass>(
         context,
         R.layout.adapter_photosfolder,
-        al_menu as List<ModelClass?>
+        al_menu
     ) {
 
-    var viewHolder: ViewHolder? = null
-    var al_menu: ArrayList<ModelClass> = ArrayList<ModelClass>()
+    lateinit var viewHolder: ViewHolder
+
 
 
     override fun getCount(): Int {
-        Log.e("ADAPTER LIST SIZE", al_menu.size.toString() + "")
+        Log.e("ADAPTER LIST SIZE", al_menu.size.toString())
         return al_menu.size
     }
 
@@ -48,28 +48,30 @@ class Adapter_PhotosFolder(context: Context, al_menu: ArrayList<ModelClass>) :
         var convertView = convertView
         if (convertView == null) {
             viewHolder = ViewHolder()
-            convertView = LayoutInflater.from(getContext())
+            convertView = LayoutInflater.from(context)
                 .inflate(R.layout.adapter_photosfolder, parent, false)
-            viewHolder!!.tv_foldern = convertView!!.findViewById<View>(R.id.tv_folder) as TextView?
-            viewHolder!!.tv_foldersize =
-                convertView.findViewById<View>(R.id.tv_folder2) as TextView?
-            viewHolder!!.iv_image = convertView.findViewById<View>(R.id.iv_image) as ImageView?
+            viewHolder.tv_foldern = convertView.findViewById<View>(R.id.tv_folder) as TextView
+            viewHolder.tv_foldersize =
+                convertView.findViewById<View>(R.id.tv_folder2) as TextView
+            viewHolder.iv_image = convertView.findViewById<View>(R.id.iv_image) as ImageView
             convertView.setTag(viewHolder)
         } else {
             viewHolder = convertView.tag as ViewHolder
         }
-        viewHolder!!.tv_foldern!!.text = al_menu[position].folderName
-        viewHolder!!.tv_foldersize!!.setText(al_menu[position].imagePath.size)
+        viewHolder.tv_foldern.text = al_menu[position].folderName
+        viewHolder.tv_foldersize.text= al_menu[position].imagePath.size.toString()
+
         Glide.with(context).load(al_menu[position].imagePath[0])
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .skipMemoryCache(true)
-            .into(viewHolder!!.iv_image!!)
+            .into(viewHolder.iv_image)
+
         return convertView!!
     }
 
     class ViewHolder {
-        var tv_foldern: TextView? = null
-        var tv_foldersize: TextView? = null
-        var iv_image: ImageView? = null
+        lateinit var tv_foldern: TextView
+        lateinit var tv_foldersize: TextView
+        lateinit var iv_image: ImageView
     }
 }

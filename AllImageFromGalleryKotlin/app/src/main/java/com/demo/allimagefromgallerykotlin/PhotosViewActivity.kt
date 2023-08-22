@@ -8,7 +8,7 @@ class PhotosViewActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
     var int_position = 0
-    var adapter: GridViewAdapter? = null
+    lateinit var adapter: GridViewAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -19,7 +19,7 @@ class PhotosViewActivity : AppCompatActivity() {
 
     private fun initView() {
         int_position = intent.getIntExtra("value", 0)
-        adapter = GridViewAdapter(this, MainActivity.imageList, int_position)
-        binding.gvFolder.setAdapter(adapter)
+        adapter = GridViewAdapter(this, MainActivity.al_images, int_position)
+        binding.gvFolder.adapter = adapter
     }
 }
