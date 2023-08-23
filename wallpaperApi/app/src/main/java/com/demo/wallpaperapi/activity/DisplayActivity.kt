@@ -1,6 +1,8 @@
 package com.demo.wallpaperapi.activity
 
+import android.Manifest
 import android.content.ContentValues
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -9,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.demo.wallpaperapi.R
 import com.demo.wallpaperapi.databinding.ActivityDisplayBinding
@@ -25,8 +29,10 @@ class DisplayActivity : AppCompatActivity() {
         displayBinding = ActivityDisplayBinding.inflate(layoutInflater)
         setContentView(displayBinding.root)
 
+        permision()
         initView()
     }
+
 
     private fun initView() {
         var url = intent.getStringExtra("url")
@@ -116,4 +122,70 @@ class DisplayActivity : AppCompatActivity() {
             Toast.makeText(this, "Saved to Gallery", Toast.LENGTH_SHORT).show()
         }
     }
+
+
+    private fun permision() {
+        if (checkPermission()) {
+
+            Toast.makeText(this, "Permission already granted.", Toast.LENGTH_LONG).show()
+
+        } else {
+
+            requestPermission();
+        }
+    }
+    private fun checkPermission(): Boolean {
+        val result = ContextCompat.checkSelfPermission(applicationContext,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+        val result1 = ContextCompat.checkSelfPermission(applicationContext,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        )
+        val result2 = ContextCompat.checkSelfPermission(applicationContext,
+            Manifest.permission.CAMERA
+        )
+        return result == PackageManager.PERMISSION_GRANTED && result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun requestPermission() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA
+            ),
+            100
+        )
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            100 -> if (grantResults.size > 0) {
+                val writeExternalStorage = grantResults[0] == PackageManager.PERMISSION_GRANTED
+                val readExternalStorage = grantResults[1] == PackageManager.PERMISSION_GRANTED
+                val camera = grantResults[2] == PackageManager.PERMISSION_GRANTED
+                if (writeExternalStorage && readExternalStorage && camera)
+                    Toast.makeText(
+                        this,
+                        "Permission Granted",
+                        Toast.LENGTH_LONG
+                    ).show()
+                else {
+                    Toast.makeText(
+                        this,
+                        "Permission Denied",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                }
+            }
+        }
+    }
+
 }
