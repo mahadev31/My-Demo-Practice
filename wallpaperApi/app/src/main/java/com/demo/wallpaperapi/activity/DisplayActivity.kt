@@ -1,4 +1,4 @@
-package com.demo.wallpaperapi.acttivity
+package com.demo.wallpaperapi.activity
 
 import android.content.ContentValues
 import android.graphics.Bitmap

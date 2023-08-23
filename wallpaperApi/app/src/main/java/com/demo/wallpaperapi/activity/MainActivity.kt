@@ -1,4 +1,4 @@
-package com.demo.wallpaperapi.acttivity
+package com.demo.wallpaperapi.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
