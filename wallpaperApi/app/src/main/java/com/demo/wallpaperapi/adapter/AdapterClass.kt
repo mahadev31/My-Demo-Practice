@@ -1,10 +1,12 @@
-package com.demo.wallpaperapi
+package com.demo.wallpaperapi.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.demo.wallpaperapi.model.Photo
+import com.demo.wallpaperapi.R
 import com.demo.wallpaperapi.databinding.RcvProductsListBinding
 
 class AdapterClass(

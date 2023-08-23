@@ -1,21 +1,25 @@
-package com.demo.wallpaperapi
+package com.demo.wallpaperapi.acttivity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
+import com.demo.wallpaperapi.APIClient
+import com.demo.wallpaperapi.APIInterface
+import com.demo.wallpaperapi.adapter.AdapterClass
+import com.demo.wallpaperapi.model.Response
 import com.demo.wallpaperapi.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var mainBinding:ActivityMainBinding
+    lateinit var mainBinding: ActivityMainBinding
     lateinit var apiInterfaceM: APIInterface
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mainBinding= ActivityMainBinding.inflate(layoutInflater)
+        mainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainBinding.root)
 
         initView()
@@ -25,12 +29,12 @@ class MainActivity : AppCompatActivity() {
         apiInterfaceM = APIClient.getClient()!!.create(APIInterface::class.java)
         apiInterfaceM.getData().enqueue(object : Callback<Response> {
             override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
-                var list=response.body()?.photos
-                Log.e("TAG", "onResponse: $list", )
+                var list = response.body()?.photos
+                Log.e("TAG", "onResponse: $list")
 
                 var adapterClass = AdapterClass(this@MainActivity, list) {
-                    var i=Intent(this@MainActivity,DisplayActivity::class.java)
-                    i.putExtra("url",it)
+                    var i = Intent(this@MainActivity, DisplayActivity::class.java)
+                    i.putExtra("url", it)
                     startActivity(i)
                 }
                 val manager = GridLayoutManager(this@MainActivity, 2)
@@ -39,7 +43,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<Response>, t: Throwable) {
-                Log.e("TAG", "onFailure: ${t.message}", )
+                Log.e("TAG", "onFailure: ${t.message}")
             }
         })
     }
