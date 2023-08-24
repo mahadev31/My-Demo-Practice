@@ -5,13 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
-import com.demo.wallpaperapi.APIClient
 import com.demo.wallpaperapi.APIInterface
 import com.demo.wallpaperapi.adapter.AdapterClass
 import com.demo.wallpaperapi.model.Response
 import com.demo.wallpaperapi.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,8 +27,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        apiInterfaceM = APIClient.getClient()!!.create(APIInterface::class.java)
-        apiInterfaceM.getData().enqueue(object : Callback<Response> {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://api.slingacademy.com/v1/sample-data/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        apiInterfaceM = retrofit.create(APIInterface::class.java)
+        val call = apiInterfaceM.getData()
+        call.enqueue(object : Callback<Response> {
             override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
                 var list = response.body()?.photos
                 Log.e("TAG", "onResponse: $list")
