@@ -68,18 +68,24 @@ class MainActivity : AppCompatActivity() {
                 ) as ArrayList<String>
                 mainBinding.tvSpeechToText.text = Objects.requireNonNull(result)[0]
 
-                if (mainBinding.tvSpeechToText.text=="silent") {
-                    vibratorFun()
-                }else if (mainBinding.tvSpeechToText.text=="vibration"){
-                    vibratorFun()
-                }else if (mainBinding.tvSpeechToText.text=="sound"){
-                    mp = MediaPlayer.create(this, R.raw.dog)
-                    mp!!.start()
-                }else if (mainBinding.tvSpeechToText.text=="play sound"){
-                    mp = MediaPlayer.create(this, R.raw.movie)
-                    mp!!.start()
-                }else{
-                    Toast.makeText(this, "Not Match", Toast.LENGTH_SHORT).show()
+                when (mainBinding.tvSpeechToText.text) {
+                    "silent" -> {
+                        vibratorFun()
+                    }
+                    "vibration" -> {
+                        vibratorFun()
+                    }
+                    "sound" -> {
+                        mp = MediaPlayer.create(this, R.raw.dog)
+                        mp!!.start()
+                    }
+                    "play sound" -> {
+                        mp = MediaPlayer.create(this, R.raw.movie)
+                        mp!!.start()
+                    }
+                    else -> {
+                        Toast.makeText(this, "Not Match", Toast.LENGTH_SHORT).show()
+                    }
                 }
 
             }
